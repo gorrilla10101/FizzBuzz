@@ -39,10 +39,8 @@ namespace FizzBuzzLibraryTest
 
             using (var writer = new StringWriter())
             {
-                // redirect Conosole output to a string writer that can be insepected
                 var fizzBuzzWriter = new FizzBuzzWriterString(writer);
                 fizzBuzzWriter.Write(results);
-                //get text wrote by string writer. 
                 var consoleString = writer.GetStringBuilder().ToString();
 
                 Assert.Contains(expected, consoleString);

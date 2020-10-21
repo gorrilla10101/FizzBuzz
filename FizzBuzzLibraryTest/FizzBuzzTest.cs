@@ -37,11 +37,9 @@ namespace FizzBuzzLibraryTest
             IEnumerable<int> range = Enumerable.Range(1, 100);
             using (var writer = new StringWriter())
             {
-                // redirect Conosole output to a string writer that can be insepected
                 var fizzBuzzWriter = new FizzBuzzWriterString(writer);
                 var fizzBuzz = new FizzBuzz(builder,fizzBuzzWriter);
-                fizzBuzz.WriteFizzBuzz(range);
-                //get text wrote by string writer. 
+                fizzBuzz.WriteFizzBuzz(range);  
                 var consoleString = writer.GetStringBuilder().ToString();
 
                 Assert.Contains(expected, consoleString);
