@@ -11,3 +11,6 @@ and iterates the results for either a single number or a list of numbers.
 
 ## IFizzBuzzWriter 
 The IFizzBuzzWriter controls where the output will be wrote to. The FizzBuzzWrtierString implementation writes it to a TextWriter. 
+
+## FizzBuzz
+FizzBuzz is the main entry point it takes an implementation of IFizzBuzzBuilder and IFizzBuzzWriter. You can then call WriteFizzBuzz and it will calculate the result of FizzBuzz and write it to the Writer. 
