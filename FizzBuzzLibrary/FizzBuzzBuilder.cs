@@ -3,9 +3,10 @@ using System.Text;
 
 namespace FizzBuzzLibrary
 {
-    public class FizzBuzzBuilder
+
+    public class FizzBuzzBuilder : IFizzBuzzBuilder
     {
-        public IEnumerable<IFizzBuzzNumberComparator> Comparators { get; }
+        protected IEnumerable<IFizzBuzzNumberComparator> Comparators { get; }
         public FizzBuzzBuilder(IEnumerable<IFizzBuzzNumberComparator> comparators)
         {
             Comparators = comparators ?? throw new System.ArgumentNullException(nameof(comparators));

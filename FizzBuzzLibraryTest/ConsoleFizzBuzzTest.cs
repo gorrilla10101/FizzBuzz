@@ -7,9 +7,9 @@ using Xunit;
 
 namespace FizzBuzzLibraryTest
 {
-    public class ConsoleFizzBuzzWriterTest
+    public class ConsoleFizzBuzzTest
     {
-        private FizzBuzz CreateFizzBuzz()
+        private FizzBuzzBuilder GetBuilder()
         {
             var comparators = new List<IFizzBuzzNumberComparator>{
                 new ModulusFizzBuzzComparator("Fizz",3),
@@ -18,9 +18,7 @@ namespace FizzBuzzLibraryTest
                 new ModulusFizzBuzzComparator("Bang",11)
             };
             var builder = new FizzBuzzBuilder(comparators);
-            var writer = new FizzBuzzWriterConsole();
-            var fizzBuzz = new FizzBuzz(builder,writer);
-            return fizzBuzz;
+            return builder;
         }
         [Theory]
         [InlineData("3: Fizz")]
@@ -35,16 +33,19 @@ namespace FizzBuzzLibraryTest
         [InlineData("77: WizzBang")]
         public void WriterWritesFizzBuzzWizzBangTo100(string expected)
         {
-            var fizzBuzz = CreateFizzBuzz();
+            var builder = GetBuilder();
             IEnumerable<int> range = Enumerable.Range(1, 100);
+            var results = builder.GetFizzBuzz(range);
 
             using (var writer = new StringWriter())
             {
                 // redirect Conosole output to a string writer that can be insepected
                 Console.SetOut(writer);
-                fizzBuzz.WriteFizzBuzz(range);
+                var fizzBuzzWriter = new FizzBuzzWriterConsole();
+                fizzBuzzWriter.Write(results);
                 //get text wrote by string writer. 
                 var consoleString = writer.GetStringBuilder().ToString();
+
                 Assert.Contains(expected, consoleString);
             }
         }
