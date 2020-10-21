@@ -1,4 +1,7 @@
 ﻿using System;
+using FizzBuzzLibrary;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FizzBuzzConsole
 {
@@ -6,7 +9,17 @@ namespace FizzBuzzConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+             var comparators = new List<IFizzBuzzNumberComparator>{
+                new ModulusFizzBuzzComparator("Fizz",3),
+                new ModulusFizzBuzzComparator("Buzz",5),
+                new ModulusFizzBuzzComparator("Wizz",7),
+                new ModulusFizzBuzzComparator("Bang",11)
+            };
+            var builder = new FizzBuzzBuilder(comparators);
+            IEnumerable<int> range = Enumerable.Range(1, 100);
+            var results = builder.GetFizzBuzz(range);
+            var writer = new ConsoleFizzBuzzWriter(results);
+            writer.Write();
         }
     }
 }
