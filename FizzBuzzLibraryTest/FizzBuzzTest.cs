@@ -7,7 +7,7 @@ using Xunit;
 
 namespace FizzBuzzLibraryTest
 {
-    public class ConsoleFizzBuzzTest
+    public class FizzBuzzTest
     {
         private FizzBuzzBuilder GetBuilder()
         {
@@ -35,14 +35,12 @@ namespace FizzBuzzLibraryTest
         {
             var builder = GetBuilder();
             IEnumerable<int> range = Enumerable.Range(1, 100);
-            var results = builder.GetFizzBuzz(range);
-
             using (var writer = new StringWriter())
             {
                 // redirect Conosole output to a string writer that can be insepected
-                Console.SetOut(writer);
-                var fizzBuzzWriter = new FizzBuzzWriterConsole();
-                fizzBuzzWriter.Write(results);
+                var fizzBuzzWriter = new FizzBuzzWriterString(writer);
+                var fizzBuzz = new FizzBuzz(builder,fizzBuzzWriter);
+                fizzBuzz.WriteFizzBuzz(range);
                 //get text wrote by string writer. 
                 var consoleString = writer.GetStringBuilder().ToString();
 

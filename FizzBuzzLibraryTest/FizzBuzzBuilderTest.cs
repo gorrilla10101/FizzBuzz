@@ -6,7 +6,7 @@ using Xunit;
 
 namespace FizzBuzzLibraryTest
 {
-    public class FizzBuzzTest
+    public class FizzBuzzBuilderTest
     {
         [Theory]
         [InlineData("Fizz", 3, 15, "15: Fizz")]

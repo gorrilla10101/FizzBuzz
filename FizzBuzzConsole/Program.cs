@@ -17,7 +17,7 @@ namespace FizzBuzzConsole
             };
             var builder = new FizzBuzzBuilder(comparators);
             IEnumerable<int> range = Enumerable.Range(1, 100);
-            var writer = new FizzBuzzWriterConsole();
+            var writer = new FizzBuzzWriterString(Console.Out);
             var fizzBuzz = new FizzBuzz(builder,writer);
             fizzBuzz.WriteFizzBuzz(range);
         }

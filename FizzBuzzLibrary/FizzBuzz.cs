@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FizzBuzzLibrary
@@ -7,8 +8,8 @@ namespace FizzBuzzLibrary
     public class FizzBuzz
     {
         protected IFizzBuzzBuilder Builder { get; }
-        protected FizzBuzzWriter Writer { get; }
-        public FizzBuzz(IFizzBuzzBuilder builder, FizzBuzzWriter writer)
+        protected IFizzBuzzWriter Writer { get; }
+        public FizzBuzz(IFizzBuzzBuilder builder, IFizzBuzzWriter writer)
         {
             Builder = builder ?? throw new System.ArgumentNullException(nameof(builder));
             Writer = writer ?? throw new System.ArgumentNullException(nameof(writer));
